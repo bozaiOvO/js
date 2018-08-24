@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+		}
+		section{
+			position: relative;
+			height: 500px;
+			width: 1000px;
+			margin:20px auto;
+			overflow-y: hidden;
+			background-color: #ff6700;
+		}
+		section>img{
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: all ease .5s;
+		}
+		section:nth-child(4)>img{
+			position: absolute;
+			top: 10%;
+			/*transform: translateY();*/
+			transition: all ease .5s;
+		}
+		section:nth-child(6)>img{
+			position: absolute;
+			top: 0;
+			/*transform: translateY();*/
+			transition: all ease .5s;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<h2>狙击枪是对准中心十字就一定可以击中对手吗？</h2>
+		<p>：如果目标在两个交点之间，你甚至要压低枪口才行。 还有，人眼透过瞄准镜看东西是存在视差的</p>
+	</section>
+	<section class="scroll">
+		<img class="scroll-img" src="../images/test.jpg" alt="">
+	</section>
+	<section>
+		<h2>狙击枪是对准中心十字就一定可以击中对手吗？</h2>
+		<p>：如果目标在两个交点之间，你甚至要压低枪口才行。 还有，人眼透过瞄准镜看东西是存在视差的</p>
+	</section>
+	<section class="scroll">
+		<img class="scroll-img" src="../images/test.jpg" alt="">
+	</section>
+	<section>
+		<h2>狙击枪是对准中心十字就一定可以击中对手吗？</h2>
+		<p>：如果目标在两个交点之间，你甚至要压低枪口才行。 还有，人眼透过瞄准镜看东西是存在视差的</p>
+	</section>
+	<section class="scroll">
+		<img class="scroll-img" src="../images/test.jpg" alt="">
+	</section>
+	+ 获取
+	<script>
+		let timer = null;
+		let diff = 0;
+		let lastPos = 0;
+		let direction = '';
+		let sectionAll = document.querySelectorAll('section')
+		let srcollAll = document.querySelectorAll('.scroll')
+		console.log(srcollAll[0].children[0])
+		window.onscroll = ()=>{
+			let windowTop = document.body.scrollTop|| document.documentElement.scrollTop;//获取页面被卷进去的高度
+			let windowH =  document.body.scrollTop+window.innerHeight;//加上页面可视区域的高度
+			//判断向上还是向下滚动
+			windowTop - lastPos > 0?direction=1:direction=0
+			lastPos = windowTop ;
+			for(let i = 0 ; i < srcollAll.length ; i++){
+				let  eleTop = srcollAll[i].offsetTop;
+				let eleH = eleTop+srcollAll[i].clientHeight;
+					console.log(windowTop,eleTop)
+				if((windowTop>eleTop)&&(windowH-eleH<window.innerHeight)){
+					//在这里判断，如果被卷进去的高度比元素的offsettop高而且可视区域比window的被卷进去减去元素的卷进去的值还大，证明在窗口范围。
+					let diff = (direction ? '-' : '+')  + '55';
+					diff = srcollAll[i].children[0].offsetTop+ parseInt(diff) 
+					clearTimeout(timer);
+					timer = setTimeout(function() {
+						srcollAll[i].children[0].style.top = diff+'px'
+					}, 16);
+				}
+			}
+		}
+	</script>
+</body>
+</html>
