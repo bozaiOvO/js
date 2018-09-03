@@ -8,6 +8,7 @@
 ## js性能优化
 
 + js性能优化 [js性能优化](makeDown/js/index.md) 
++ 闭包 [闭包](makeDown/js/bibao.md)
 =======
 # -demo
 ## 再加把劲吧。
