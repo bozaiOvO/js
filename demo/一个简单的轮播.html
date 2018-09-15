@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		body,html{
+			background: #8f8f8f
+		}
+		.wrapper{
+			width: 500px;
+			height: 300px;
+			margin: 10px auto;
+			overflow-x: hidden;
+		}
+		.list{
+			width: 500%;
+			height: 100%;
+			background: #999;
+		}
+		.list li{
+			float: left;
+			width: 500px;
+			height:100%;
+			
+		}
+		.list li:nth-child(1){
+			background-color: #ff6700
+		}
+		.list li:nth-child(2){
+			background-color: yellow
+		}
+		.list li:nth-child(3){
+			background-color: green
+		}
+		.list li:nth-child(5){
+			background-color: red
+		}
+		.list li:nth-child(4){
+			background-color: #ee9911
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="list">
+			<li class="item"></li>
+			<li class="item"></li>
+			<li class="item"></li>
+			<li class="item"></li>
+			<li class="item"></li>
+		</ul>
+	</div>
+	<script>
+
+var name1 = '熊'
+var name2 = '埋'
+// alert(name2)
+function happly(name,site){
+	console.log(arguments)
+    // alert(name)
+    // alert(site)
+    function site(){
+        alert('在郑州')
+    }
+    var name = 'xxx'
+}
+happly('小波','泉州')
+
+// bozai()
+function bozai(){
+    var age = 20
+    var fn = new Function('alert(age)')
+    fn()
+}
+function xxx(){
+	var a = 1 
+	var b = 2 
+	function v(){
+		console.log(a)
+	}
+	v()
+	// window.v = v
+}
+xxx()
+// window.v()
+a1()
+// console.log(a3)
+function a1(){
+	var x = 1 
+	function a2(){
+		function a3(){
+			console.log(x)
+		}
+		a3()
+	}
+	a2()
+}
+function a(){
+    var n =1 
+    n++ 
+    console.log(n)
+}
+a()//2
+a()
+function a(){
+    var n = 1 
+    function add(){
+        n++
+        console.log('我是add的'+n)
+    }
+    return add
+}
+
+var add2 = a()
+add2()
+add2()
+
+
+function add(n){
+    return function add2(max){
+        return console.log(max+n) 
+    }
+}
+var add3 = add(1)
+add3(2)
+f1()
+function f1(){
+	var num = 1 
+	function f2(){
+		alert(num)
+	}
+	
+	num++
+	f2()
+}
+ 
+
+
+
+
+
+
+	</script>
+</body>
+</html>
