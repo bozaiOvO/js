@@ -7,6 +7,7 @@
 + 04.波仔高级js之Object [波仔高级jsObject.](makeDown/js/04.高级Js之Object.md)
 + 05.高级Js之prototype [波仔高级Js之prototype](makeDown/js/05.高级Js之prototype.md)
 + 06.高级Js之this，call，apply[06.高级Js之this，call，apply](makeDown/js/06.高级Js之this，call，apply.md)
++ 07.高级js之我们new的时候，我们做了什么[07.高级js之我们new的时候，我们做了什么](makeDown/js/07.高级js之我们new的时候，我们做了什么.md)
 
 
 >>>>>>> b1d32f97101281798d5aca470ba307a5bbaa575b
