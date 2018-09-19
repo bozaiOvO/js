@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+        }
+        .main>div{
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            perspective:100px;
+        }
+        body .main .page.active{
+            display: block;
+        }
+        .ball{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 500px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: red;
+        }
+        .block{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(1000px,-50%);
+            width: 500px;
+            height: 300px;
+            background-color: #fff;
+            transition: all ease-in 1s;
+        }
+        body .main .page1.active{
+            background-color: aqua;
+        }
+        body .main .page2{
+            background-color: brown;
+        }
+        body .main .page3{
+            background-color: blueviolet
+        }
+        .arr{
+            position: absolute;
+            top: 50%;
+            transform: translate(0,-50%);
+            width: 60px;
+            height: 90px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 90px;
+            font-size: 30px;
+            z-index: 20;
+        }
+        .page1.active .ball{
+            animation: tantantan .75s  ;
+        }
+        .page2 .block{
+            animation: gogogo 1s forwards;
+
+        }
+        .list{
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 30px;
+            list-style: none;
+        }
+        .list .item{
+            float: left;
+            width: 200px;
+            height: 100%;
+            text-align: center;
+            line-height: 30px;
+            background: #ff6700
+        }
+        .list .mask{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #fff;
+            width: 200px;
+            height: 100%;
+            z-index: 2;
+        }
+        .arr.l{
+            left: 20px;
+        }
+        .arr.r{
+            right: 20px;
+        }
+        @keyframes tantantan{
+            0%{
+                transform: translate(-50%,-50%) translateZ(10px)
+            }
+            25%{
+                transform: translate(-50%,-50%) translateZ(30px)
+            }
+            45%{
+                transform: translate(-50%,-50%) translateZ(10px)
+            }
+            65%{
+                transform: translate(-50%,-50%) translateZ(20px)
+            }
+            85%{
+                transform: translate(-50%,-50%) translateZ(7px)
+            }
+            95%{
+                transform: translate(-50%,-50%) translateZ(10px)
+            }
+            100%{
+                transform:translate(-50%,-50%) translateZ(0px)
+            }
+        }
+        @keyframes gogogo{
+            from{
+                transform: translate(1000px,-50%)
+            }
+            to{
+                transform: translate(-50%,-50%) 
+            } 
+        }
+    </style>
+</head>
+<body>
+    <div class="arr l" onclick='handleClick()'>
+        <
+    </div>
+    <div class="arr r" onclick='handleClick(true)'>
+        >
+    </div>
+    <div class=main>
+        <div class="page1 page active">
+            <div class="ball">
+
+            </div>
+        </div>
+        <div class="page2 page">
+            <div class="block">
+
+            </div>
+        </div>
+        <div class="page3 page">
+
+        </div>
+    </div>
+    <ul class="list">
+        <li class="item">Page-1</li>
+        <li class="item">Page-2</li>
+        <li class="item">Page-3</li>
+        <li class="mask"></li>
+    </ul>
+    <script>
+        var main = document.querySelector('.main')
+        var pageE = document.querySelectorAll('.page')
+        var mask = document.querySelector('.mask')
+        var itemW = mask.offsetWidth
+        let count = 0
+        var timer 
+        handleClick=function(isR){
+            if(isR){
+                count++;
+                if(count>=pageE.length-1){
+                    count=pageE.length-1
+                }
+                console.log(count)
+            }else{
+                count--;
+                if(count<=0){
+                    count = 0
+                }
+            }
+            go(count)
+        }
+        function go(count){
+            for(var i = 0 ; i < pageE.length ; i ++){
+                pageE[i].classList.remove('active')
+            }
+            mask.style.left = count*itemW+'px';
+            pageE[count].classList.add('active')
+        }
+    windowAddMouseWheel();
+    function windowAddMouseWheel() {
+    var scrollFunc = function (e) {
+        e = e || window.event;
+        if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+            if (e.wheelDelta > 0) { //当滑轮向上滚动时
+                clearTimeout(timer)
+                timer = setTimeout(function(){
+                    handleClick()
+                },50)
+            }
+            if (e.wheelDelta < 0) { //当滑轮向下滚动时
+                clearTimeout(timer)
+                timer = setTimeout(function(){
+                    handleClick(true)
+                },50)
+            }
+        } else if (e.detail) {  //Firefox滑轮事件
+            if (e.detail> 0) { //当滑轮向上滚动时
+                handleClick()
+            }
+            if (e.detail< 0) { //当滑轮向下滚动时
+                handleClick(true)
+            }
+        }
+    };
+    //给页面绑定滑轮滚动事件
+    if (document.addEventListener) {
+        document.addEventListener('DOMMouseScroll', scrollFunc, false);
+    }
+//滚动滑轮触发scrollFunc方法
+    window.onmousewheel = document.onmousewheel = scrollFunc;
+}
+    </script>
+</body>
+</html>

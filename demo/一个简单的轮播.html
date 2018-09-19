@@ -12,7 +12,7 @@
 		body,html{
 			background: #8f8f8f
 		}
-		.wrapper{
+		.swiper-wrapper{
 			width: 500px;
 			height: 300px;
 			margin: 10px auto;
@@ -47,105 +47,25 @@
 	</style>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="swiper-wrapper">
 		<ul class="list">
-			<li class="item"></li>
-			<li class="item"></li>
-			<li class="item"></li>
-			<li class="item"></li>
-			<li class="item"></li>
+			<li class="swiper-item">1</li>
+			<li class="swiper-item">2</li>
+			<li class="swiper-item">3</li>
+			<li class="swiper-item">4</li>
+			<li class="swiper-item">5</li>
 		</ul>
 	</div>
+	<script src="swiper.js"></script>
 	<script>
-
-var name1 = '熊'
-var name2 = '埋'
-// alert(name2)
-function happly(name,site){
-	console.log(arguments)
-    // alert(name)
-    // alert(site)
-    function site(){
-        alert('在郑州')
-    }
-    var name = 'xxx'
-}
-happly('小波','泉州')
-
-// bozai()
-function bozai(){
-    var age = 20
-    var fn = new Function('alert(age)')
-    fn()
-}
-function xxx(){
-	var a = 1 
-	var b = 2 
-	function v(){
-		console.log(a)
-	}
-	v()
-	// window.v = v
-}
-xxx()
-// window.v()
-a1()
-// console.log(a3)
-function a1(){
-	var x = 1 
-	function a2(){
-		function a3(){
-			console.log(x)
+		var ele = document.getElementsByClassName('swiper-item');
+		console.log(ele.length)
+		window.onload = function(){
+			//以这种方式开启轮播
+			new Swiper();
 		}
-		a3()
-	}
-	a2()
-}
-function a(){
-    var n =1 
-    n++ 
-    console.log(n)
-}
-a()//2
-a()
-function a(){
-    var n = 1 
-    function add(){
-        n++
-        console.log('我是add的'+n)
-    }
-    return add
-}
-
-var add2 = a()
-add2()
-add2()
-
-
-function add(n){
-    return function add2(max){
-        return console.log(max+n) 
-    }
-}
-var add3 = add(1)
-add3(2)
-f1()
-function f1(){
-	var num = 1 
-	function f2(){
-		alert(num)
-	}
+		
 	
-	num++
-	f2()
-}
- 
-
-
-
-
-
-
 	</script>
 </body>
 </html>

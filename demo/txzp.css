@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.bg {
+  position: absolute;
+  z-index: 0;
+  background: url("https://cdn.tencentgroup.qq.com/join_static/static/v2/images/bg.png") no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateZ(-10px);
+}
+header {
+  position: fixed;
+  left: 100px;
+  top: 50px;
+  display: flex;
+  height: 31px;
+  justify-content: space-between;
+  max-width: 1600px;
+  z-index: 99;
+  align-items: flex-end;
+}
+header .logo {
+  width: 230px;
+  height: 100%;
+  background: url("https://cdn.tencentgroup.qq.com/join_static/static/v2/images/logo.png") no-repeat center;
+}
+header .list {
+  margin-left: 40px;
+}
+header .list li {
+  float: left;
+  margin: 0 26px;
+}
+header .list li a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+}
+header .list li.active a {
+  font-weight: 800;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #fff;
+}
